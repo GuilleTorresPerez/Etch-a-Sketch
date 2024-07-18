@@ -1,0 +1,49 @@
+body {
+    min-height: 100vh;
+    margin: 0px;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+h1 {
+    text-align: center;
+    margin: 0px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+
+    border: solid;
+    width: 750px;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    
+    display: flex;
+    margin-right: 10px;
+    padding: 20px;
+}
+
+button {
+    position: absolute;
+    top:0px;
+    left:100%;
+
+    margin-left: 40px;
+}
+
+footer {
+    padding-top: 30px;
+    text-align: center;
+}
+
