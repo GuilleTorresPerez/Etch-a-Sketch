@@ -4,10 +4,6 @@ body {
 }
 
 header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
     padding: 40px;
 }
 
@@ -25,13 +21,16 @@ main {
     position: relative;
 
     border: solid;
-    width: 750px;
     aspect-ratio: 1 / 1;
     text-align: center;
-    
+
     display: flex;
-    margin-right: 10px;
-    padding: 20px;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    aspect-ratio: 1 / 1;
 }
 
 button {
