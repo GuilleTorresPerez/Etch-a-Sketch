@@ -1,22 +1,22 @@
 let gridWidth = 16;
-let gridSize = gridWidth * gridWidth;
 let boardWidth = 750;
-let boardSize = boardWidth * boardWidth;
+
+function getCellWidth(gridWidth, boardWidth) {
+    const gridSize = gridWidth * gridWidth;
+    const boardSize = boardWidth * boardWidth;
+    const cellSize = Math.floor(boardSize/gridSize);
+    return Math.sqrt(cellSize);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     //Create grid
     const board = document.querySelector('.board');
     board.style.width = boardWidth + 'px';
-
-    const cellSize = Math.floor(boardSize/gridSize);
-    console.log('cell size is: ' + cellSize);
-    const cellWidth = Math.sqrt(cellSize)
-    console.log('cell width is: ' + cellWidth);
+    const cellWidth = getCellWidth(gridWidth, boardWidth);
     for (let i = 0; i < gridWidth; i++) {
         for(let i = 0; i < gridWidth; i++) {
             const cell = document.createElement('div');
             cell.className = 'cell';
-            console.log('width: ' + cell.style.width);
             board.appendChild(cell);
         }
     }
@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.style.flex = '1 0 auto';
         cell.style.width = cellWidth+'px';
         cell.style.aspectRatio = '1 / 1';
-        cell.style.boxSizing = 'border-box';
-
+        cell.style.boxSizing = 'border-box';    
         cell.style.border = 'solid';
         cell.style.borderWidth = 'thin';
     });
