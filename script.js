@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     board.style.width = boardWidth + 'px';
     const cellWidth = getCellWidth(gridWidth, boardWidth);
     for (let i = 0; i < gridWidth; i++) {
-        for(let i = 0; i < gridWidth; i++) {
+        for(let j = 0; j < gridWidth; j++) {
             const cell = document.createElement('div');
             cell.className = 'cell';
             board.appendChild(cell);
@@ -35,4 +35,36 @@ document.addEventListener('DOMContentLoaded', function() {
             cell.style.backgroundColor = 'black';
         });
     });
+
+    const changeSizeButton = document.querySelector('button');
+    changeSizeButton.addEventListener('click', function() {
+        const newInput = handleInput();
+        gridWidth = newInput;
+    });
+    
 }); 
+
+function handleInput() {    
+    let inputSize;
+    let inputOk;
+
+    do {
+        inputOk = true;
+        inputSize = parseInt(window.prompt("Enter the grid size between 1 and 100"));
+        if (inputSize == null) {
+            return -1;
+        }
+
+        if (isNaN(inputSize)) {
+            alert("The input must be a number");
+            inputOk = false;
+        }
+
+        if (inputSize < 1 || inputSize > 100) {
+            alert("The size must be between 1 and 100");
+            inputOk = false;
+        }
+    } while (!inputOk);
+
+    return inputSize;
+}
