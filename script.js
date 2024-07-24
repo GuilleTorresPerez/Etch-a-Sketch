@@ -8,11 +8,7 @@ function getCellWidth(gridWidth, boardWidth) {
     return Math.sqrt(cellSize);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    //Create grid
-    const board = document.querySelector('.board');
-    board.style.width = boardWidth + 'px';
-    const cellWidth = getCellWidth(gridWidth, boardWidth);
+function createGrid(board, gridWidth) {
     for (let i = 0; i < gridWidth; i++) {
         for(let j = 0; j < gridWidth; j++) {
             const cell = document.createElement('div');
@@ -20,7 +16,17 @@ document.addEventListener('DOMContentLoaded', function() {
             board.appendChild(cell);
         }
     }
-    
+}
+
+//delete all the divs with class cell
+function deleteGrid() {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+        cell.remove();
+    });
+}
+
+function styleCells(cellWidth) {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
         cell.style.flex = '1 0 auto';
@@ -29,17 +35,32 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.style.boxSizing = 'border-box';    
         // cell.style.border = 'solid';
         // cell.style.borderWidth = 'thin';
-
+        
         cell.addEventListener('mouseover', function(e) {
             // console.log(e);
             cell.style.backgroundColor = 'black';
         });
     });
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+    //Board
+    const board = document.querySelector('.board');
+    board.style.width = boardWidth + 'px';
+    createGrid(board, gridWidth);
+    
+    //Syle cells
+    let cellWidth = getCellWidth(gridWidth, boardWidth);
+    styleCells(cellWidth);
+
+    //Change size button
     const changeSizeButton = document.querySelector('button');
     changeSizeButton.addEventListener('click', function() {
-        const newInput = handleInput();
-        gridWidth = newInput;
+        gridWidth = handleInput();
+        cellWidth = getCellWidth(gridWidth, boardWidth);
+        deleteGrid();
+        createGrid(board, gridWidth);
+        styleCells(cellWidth);
     });
     
 }); 
