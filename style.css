@@ -1,6 +1,7 @@
 body {
     min-height: 100vh;
     margin: 0px;
+    background-color: #EDEADE;
 }
 
 header {
@@ -10,6 +11,11 @@ header {
 h1 {
     text-align: center;
     margin: 0px;
+    
+    font-family: "Playwrite DK Uloopet", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 main {
@@ -27,22 +33,41 @@ main {
     display: flex;
 }
 
+/* minimalist button */
+button {
+    font-size: large;
+    padding: 10px;
+    border: 2px solid;
+    color: #36454F;
+    /* background-color: #0063cc; */
+    border-color: #36454F;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 125px;
+    aspect-ratio: 1 / 0.5;
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .board {
     display: flex;
     flex-wrap: wrap;
     aspect-ratio: 1 / 1;
+    background-color: white;
 }
 
-button {
+.side-panel {
     position: absolute;
     top:0px;
     left:100%;
-
     margin-left: 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 footer {
     padding-top: 30px;
     text-align: center;
 }
-
