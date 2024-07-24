@@ -1,6 +1,7 @@
 let gridWidth = 16;
 let boardWidth = 750;
 let isMouseDown = false;
+let darkeningFlag = false;
 
 function getCellWidth(gridWidth, boardWidth) {
     const gridSize = gridWidth * gridWidth;
@@ -39,8 +40,18 @@ function styleCells(cellWidth) {
         
         cell.addEventListener('mouseover', function() {
             if(isMouseDown) {
-                cell.style.backgroundColor = 'black';                
+                cell.style.backgroundColor = 'black';  
+                if(darkeningFlag) {
+                    let opacity = parseFloat(cell.style.opacity) || 0;  // Asegura que opacity tenga un valor numérico
+                    opacity = Math.min(opacity + 0.1, 1);  // Asegura que opacity no sea menor a 0
+                    cell.style.opacity = opacity.toString();
+                } else {
+                    cell.style.opacity = '1';              
+                }
+
             }
+
+
         });
 
         cell.addEventListener('mousedown', function(e) {
@@ -64,7 +75,19 @@ function paintGrid(color) {
     const cells = document.querySelectorAll('.cell');
     cells.forEach((cell) => {
         cell.style.backgroundColor = color;
+        cell.style.opacity = '0';
     });
+}
+
+// Función para cambiar los estilos del botón
+function toggleButtonStyles(button, isActive) {
+    if (isActive) {
+        button.style.backgroundColor = '#36454F';
+        button.style.color = '#EDEADE';
+    } else {
+        button.style.backgroundColor = '#FCFCFC';
+        button.style.color = '#36454F';
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -91,6 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearButton = document.querySelector('.clear');
     clearButton.addEventListener('click', function() {
         paintGrid('white');
+    });
+
+    //Darkening button
+    const darkeningButton = this.documentElement.querySelector('.darkening');
+    // Añadir evento al botón
+    darkeningButton.addEventListener('click', function() {
+        darkeningFlag = !darkeningFlag;
+        console.log(darkeningFlag);
+        toggleButtonStyles(darkeningButton, darkeningFlag);
     });
     
 }); 
