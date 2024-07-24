@@ -1,5 +1,6 @@
 let gridWidth = 16;
 let boardWidth = 750;
+let isMouseDown = false;
 
 function getCellWidth(gridWidth, boardWidth) {
     const gridSize = gridWidth * gridWidth;
@@ -36,9 +37,25 @@ function styleCells(cellWidth) {
         // cell.style.border = 'solid';
         // cell.style.borderWidth = 'thin';
         
-        cell.addEventListener('mouseover', function(e) {
+        cell.addEventListener('mouseover', function() {
+            if(isMouseDown) {
+                cell.style.backgroundColor = 'black';                
+            }
+        });
+
+        cell.addEventListener('mousedown', function(e) {
             // console.log(e);
-            cell.style.backgroundColor = 'black';
+            isMouseDown = true;
+            // cell.style.backgroundColor = 'black';
+        });
+
+        cell.addEventListener('mouseup', function() {
+            isMouseDown = false;
+        });
+
+        // Prevenir el arrastre predeterminado
+        cell.addEventListener('dragstart', function(e) {
+            e.preventDefault();
         });
     });
 }
