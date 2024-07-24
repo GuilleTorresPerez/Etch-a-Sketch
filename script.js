@@ -71,10 +71,14 @@ function handleInput() {
 
     do {
         inputOk = true;
-        inputSize = parseInt(window.prompt("Enter the grid size between 1 and 100"));
+        inputSize = window.prompt("Enter the grid size between 1 and 100");
+
         if (inputSize == null) {
+            console.log('Input size is null');
             return -1;
         }
+
+        inputSize = parseInt(inputSize);
 
         if (isNaN(inputSize)) {
             alert("The input must be a number");
@@ -85,6 +89,7 @@ function handleInput() {
             alert("The size must be between 1 and 100");
             inputOk = false;
         }
+
     } while (!inputOk);
 
     return inputSize;
