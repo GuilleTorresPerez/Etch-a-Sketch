@@ -60,6 +60,13 @@ function styleCells(cellWidth) {
     });
 }
 
+function paintGrid(color) {
+    const cells = document.querySelectorAll('.cell');
+    cells.forEach((cell) => {
+        cell.style.backgroundColor = color;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     //Board
     const board = document.querySelector('.board');
@@ -71,13 +78,19 @@ document.addEventListener('DOMContentLoaded', function() {
     styleCells(cellWidth);
 
     //Change size button
-    const changeSizeButton = document.querySelector('button');
+    const changeSizeButton = document.querySelector('.change-size');
     changeSizeButton.addEventListener('click', function() {
         gridWidth = handleInput();
         cellWidth = getCellWidth(gridWidth, boardWidth);
         deleteGrid();
         createGrid(board, gridWidth);
         styleCells(cellWidth);
+    });
+
+    //Clear button
+    const clearButton = document.querySelector('.clear');
+    clearButton.addEventListener('click', function() {
+        paintGrid('white');
     });
     
 }); 
