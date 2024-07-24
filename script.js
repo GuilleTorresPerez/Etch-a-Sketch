@@ -27,7 +27,12 @@ document.addEventListener('DOMContentLoaded', function() {
         cell.style.width = cellWidth+'px';
         cell.style.aspectRatio = '1 / 1';
         cell.style.boxSizing = 'border-box';    
-        cell.style.border = 'solid';
-        cell.style.borderWidth = 'thin';
+        // cell.style.border = 'solid';
+        // cell.style.borderWidth = 'thin';
+
+        cell.addEventListener('mouseover', function(e) {
+            // console.log(e);
+            cell.style.backgroundColor = 'black';
+        });
     });
 }); 
