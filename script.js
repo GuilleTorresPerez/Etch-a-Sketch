@@ -103,7 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //Change size button
     const changeSizeButton = document.querySelector('.change-size');
     changeSizeButton.addEventListener('click', function() {
-        gridWidth = handleInput();
+        gridWidth = handleInput(gridWidth);
+        if (gridWidth === null) {
+            return;
+        }
         cellWidth = getCellWidth(gridWidth, boardWidth);
         deleteGrid();
         createGrid(board, gridWidth);
@@ -127,7 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
 }); 
 
-function handleInput() {    
+// Función para manejar la entrada del usuario, si el usuario cancela la entrada, la función
+// devuelve null
+function handleInput(gridWidth) {    
     let inputSize;
     let inputOk;
 
@@ -136,8 +141,8 @@ function handleInput() {
         inputSize = window.prompt("Enter the grid size between 1 and 100");
 
         if (inputSize == null) {
-            console.log('Input size is null');
-            return -1;
+            // console.log('Input size is null, returning null');
+            return null;
         }
 
         inputSize = parseInt(inputSize);
